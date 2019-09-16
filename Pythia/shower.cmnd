@@ -1,0 +1,80 @@
+! main31.cmnd.
+! This file contains commands to be read in for a Pythia8 run.
+! Lines not beginning with a letter or digit are comments.
+! Names are case-insensitive  -  but spellings-sensitive!
+! The settings here are illustrative, not always physics-motivated.
+! You should carefully consider what changes need be done for the
+! process you study currently, and consider some of the options
+! as reasonable measures of uncertainties in the matching process.
+
+! Number of events - use 0 for all LHEF events in the input file.
+Main:numberOfEvents = 0
+
+! Number of events to list and number of errors to allow.
+Next:numberShowLHA = 1
+Next:numberShowInfo = 1
+Next:numberShowProcess = 1
+Next:numberShowEvent = 1
+Main:timesAllowErrors = 500
+
+Tune:ee = 7
+Tune:pp = 14
+SpaceShower:rapidityOrder = on
+SigmaProcess:alphaSvalue = 0.144
+SpaceShower:pT0Ref = 1.30
+SpaceShower:pTmaxFudge = 0.95
+SpaceShower:pTdampFudge = 1.21
+SpaceShower:alphaSvalue = 0.125
+TimeShower:alphaSvalue = 0.126
+BeamRemnants:primordialKThard = 1.72
+MultipartonInteractions:pT0Ref = 1.98
+MultipartonInteractions:alphaSvalue = 0.118
+ColourReconnection:range = 2.08
+PDF:pSet=LHAPDF6:NNPDF23_lo_as_0130_qed
+
+Random:setSeed = on
+Random:seed = 0
+
+6:m0 = 172.5
+23:m0 = 91.1876
+23:mWidth = 2.4952
+24:m0 = 80.399
+24:mWidth = 2.085
+StandardModel:sin2thetaW = 0.23113
+StandardModel:sin2thetaWbar = 0.23146
+ParticleDecays:limitTau0 = on
+ParticleDecays:tau0Max = 10.0
+
+Beams:allowVertexSpread = on
+Beams:sigmaVertexX = 6.8e-3
+Beams:sigmaVertexY = 6.8e-3
+Beams:sigmaVertexZ = 57
+
+
+! List changed settings or particle data.
+Init:showChangedSettings = on
+Init:showChangedParticleData = off
+
+! Further options (optional, for tryout)
+!PartonLevel:MPI = off
+!HadronLevel:All = off
+
+! By Danilo
+
+! Input file setup.
+Beams:frameType = 4
+Beams:LHEF=input.lhe
+
+! Disable all SM Higgs decays
+25:onMode = off
+! Enable only the h->b bbar decays
+25:onIfMatch = 5 -5
+! Set the SM Higgs mass and its maximum variation allowed
+25:m0 = 125.0
+25:mMin = 124.5
+25:mMax = 125.5
+! Make it narrow too (the actual width is anyway much smaller)
+25:mWidth = 0.01
+! Make its lifetime negligibly small, so it decays
+25:tau0 = 0
+
