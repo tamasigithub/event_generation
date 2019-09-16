@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+# tamasi kar 13.09.2019
+
+# save current directory
+export CURRENT_DIR=$PWD
+echo "PWD"
+echo "$CURRENT_DIR"
+
+# installation path (eval home)
+#eval INSTALL_DIR=${1:-"~/opt"}
+export INSTALL_DIR=$CURRENT_DIR/../Pythia
+
+# check if directory
+if [ ! -d "$INSTALL_DIR" ]; then
+  echo $INSTALL_DIR
+  mkdir $INSTALL_DIR
+fi
+
+# change to INSTALL_DIR
+cd $INSTALL_DIR
+echo "Info: Current directory $INSTALL_DIR"
+
+#### root, fastjet and lhapdf installation on lxplus/naf ####
+# comment the block below if installing on a local machine and point the environment variable LHAPDF_DATA_PATH to the the directory containing lhapdf datasets
+setupATLAS
+#setup root for slc6 and gcc8
+lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt ROOT"
+#setup fastjet
+lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt fastjet"
+#setup lhapdf
+lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt lhapdf 6.2.3"
+
+# download latest version of pythia 
+wget home.thep.lu.se/~torbjorn/pythia8/pythia8243.tgz
+
+# unpack *z.tar.gz file
+tar -xvzf pythia8243.tgz
+
+# remove *.tar.gz.1 file
+rm pythia8243.tgz
+
+# go to folder
+cd pythia8243
+export PYTHIA8=$PWD
+export ROOT_PATH=$(eval root-config --prefix)
+export LHAPDF_PATH=$(eval lhapdf-config --prefix)
+
+# configure 
+./configure --enable-shared -enable-64bit --prefix=$PWD/../pythia8243-install --with-lhapdf6=$LHAPDF_PATH 
+#--with-root=$ROOT_PATH
+#./configure --enable-shared -enable-64bit --prefix=$PWD/../pythia8243-install
+
+# make add -jN option for more cpus
+make
+
+# add to export.sh if not existent
+grep -qxF "export PYTHIA8=$PWD" $CURRENT_DIR/export.sh \
+     || echo "export PYTHIA8=$PWD" >> $CURRENT_DIR/export.sh
+grep -qxF "export PYTHIA8DATA=$PYTHIA8/share/Pythia8/xmldoc" $CURRENT_DIR/export.sh \
+     || echo "export PYTHIA8DATA=$PYTHIA8/share/Pythia8/xmldoc" >> $CURRENT_DIR/export.sh
+grep -qxF "export LD_LIBRARY_PATH=$PYTHIA8/lib:\$LD_LIBRARY_PATH" $CURRENT_DIR/export.sh \
+     || echo "export LD_LIBRARY_PATH=$PYTHIA8/lib:\$LD_LIBRARY_PATH" >> $CURRENT_DIR/export.sh
+grep -qxF "export PATH=$PYTHIA8/bin:\$PATH" $CURRENT_DIR/export.sh \
+     || echo "export PATH=$PYTHIA8/bin:\$PATH" >> $CURRENT_DIR/export.sh
+grep -qxF "export PATH=$PYTHIA8:\$PATH" $CURRENT_DIR/export.sh \
+     || echo "export PATH=$PYTHIA8:\$PATH" >> $CURRENT_DIR/export.sh
+grep -qxF "export LHAPDF_DATA_PATH=/cvmfs/atlas.cern.ch/repo/sw/Generators/lhapdfsets/current:\$LHAPDF_DATA_PATH" $CURRENT_DIR/export.sh \
+     || echo "export LHAPDF_DATA_PATH=/cvmfs/atlas.cern.ch/repo/sw/Generators/lhapdfsets/current:\$LHAPDF_DATA_PATH" >> $CURRENT_DIR/export.sh
+
+# update source file
+cd $CURRENT_DIR
+ls .
+source ./export.sh
+
+echo "Info: Done :)"

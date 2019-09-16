@@ -22,6 +22,16 @@ fi
 cd $INSTALL_DIR
 echo "Info: Current directory $INSTALL_DIR"
 
+#### root, fastjet and lhapdf installation on lxplus/naf ####
+# comment the block below if installing on a local machine and point the environment variable LHAPDF_DATA_PATH to the the directory containing lhapdf datasets
+setupATLAS
+#setup root for slc6 and gcc8
+lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt ROOT"
+#setup fastjet
+lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt fastjet"
+#setup lhapdf
+lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt lhapdf 6.2.3"
+
 # download latest version of mg5 (v6.x.x)
 wget https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/MG5_aMC_v2.6.6.tar.gz
 

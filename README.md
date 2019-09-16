@@ -1,29 +1,47 @@
-# README #
+# EVENT GENERATORS #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This repository contains install and run(locally and on Grid) instructions for the following event generators:
+* MadGraph5: Simulation of fixed-order matrix element.
+* Pythia8: Simulation of parton shower based on perturbative QCD.
 
-### What is this repository for? ###
+### Installation ###
+To install the above softwares go to the requirements directory and execute the corresponding install scripts.
+<br /> If you are making these installation on your local pc, make sure you have the prerequisites already installed.
 
-* Quick summary
-* Version
+#### Prerequisites ####
+Try installing the latest verion of the following
+* Root6
+* FastJet
+* LHAPDF
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
+#### How do I get set up?
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Clone the repository using https or ssh
+```
+git clone git@bitbucket.org:kartamasi16/event-generators.git
+```
+* Create your own local branch and start working on it
+```
+cd event-generators
+git branch <name_of_your_branch>
+git checkout <name_of_your_branch>
+```
+* Go to the requirements directory and install the generator of your interest. 
+```
+cd requirements
+source install-<software_of_interest>
+```
+Note: Source the install script with the source command. If installing on a local pc change the LHAPDF_DATA_PATH in the install scripts
+<br /> The above will make a local installation of the software of your interest in the corresponding directories
 
-### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+### HOW to RUN ###
+* MadGraph: Please read the [README](https://bitbucket.org/kartamasi16/event-generators/src/master/MadGraph/README.md) for MadGraph
+* Pythia: Please read the for Pythia
 
-### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+### Contact ###
+Tamasi Kar, University of Heidelberg
+<br /> tamasi.kar@cern.ch
+
