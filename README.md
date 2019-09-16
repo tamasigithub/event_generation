@@ -6,7 +6,8 @@ This repository contains install and run(locally and on Grid) instructions for t
 * Pythia8: Simulation of parton shower based on perturbative QCD.
 
 ### Installation 
-To install the above softwares go to the requirements directory and execute the corresponding install scripts.<br />
+To install the above softwares go to the requirements directory and execute the corresponding install scripts.
+
 If you are making these installation on your local pc, make sure you have the prerequisites already installed.
 
 #### Prerequisites 
@@ -33,7 +34,8 @@ git checkout <name_of_your_branch>
 cd requirements
 source install-<software_of_interest>
 ```
-Note: Source the install script with the source command. If installing on a local pc change the LHAPDF_DATA_PATH in the install scripts<br />
+Note: Source the install script with the source command. If installing on a local pc change the LHAPDF_DATA_PATH in the install scripts
+
 The above will make a local installation of the software of your interest in the corresponding directories
 
 
@@ -43,6 +45,7 @@ The above will make a local installation of the software of your interest in the
 
 
 ### Contact 
-Tamasi Kar, University of Heidelberg<br /> 
+Tamasi Kar, University of Heidelberg
+
 *tamasi.kar@cern.ch*
 
