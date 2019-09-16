@@ -17,4 +17,4 @@ lsetup panda
 rm tarball.tar.gz
 tar cvfz tarball_ggF_hh.tar.gz MG5_aMC_v2_6_6 run_MG5_ggF_hh.sh
 
-prun --exec "run_MG5_ggF_hh.sh" --outDS user.${CERN_USER}.pp_ggF_hh.v1 --outputs unweighted_events.lhe --inTarBall tarball_ggF_hh.tar.gz --nJobs 1
+prun --exec "run_MG5_ggF_hh.sh" --outDS user.${CERN_USER}.pp_ggF_hh.v2 --outputs unweighted_events.lhe --inTarBall tarball_ggF_hh.tar.gz --nJobs 1000

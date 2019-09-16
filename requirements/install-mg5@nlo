@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# tamasi kar 13.09.2019
+
+export DISPLAY=
+# save current directory
+export CURRENT_DIR=$PWD
+echo "PWD"
+echo "$CURRENT_DIR"
+
+# installation path (eval home)
+#eval INSTALL_DIR=${1:-"~/opt"}
+export INSTALL_DIR=$CURRENT_DIR/../MadGraph
+
+# check if directory
+if [ ! -d "$INSTALL_DIR" ]; then
+  echo $INSTALL_DIR
+  mkdir $INSTALL_DIR
+fi
+
+# change to INSTALL_DIR
+cd $INSTALL_DIR
+echo "Info: Current directory $INSTALL_DIR"
+
+# download latest version of mg5 (v6.x.x)
+wget https://launchpad.net/mg5amcnlo/2.0/2.6.x/+download/MG5_aMC_v2.6.6.tar.gz
+
+# unpack *.tar.gz file
+tar -xvzf MG5_aMC_v2.6.6.tar.gz
+
+# remove *.tar.gz file
+rm MG5_aMC_v2.6.6.tar.gz
+
+# go to binary folder
+cd MG5_aMC_v2_6_6/bin/
+
+# write a little MG script that is called within this script
+# update to newest version of mg
+# pythia-pgs: parton showering, hadronization and detector simulation
+# madanalysis: framework for phenomenological investigations at particle colliders
+# exrootanalysis: package designed to simplify ROOT tree production and analysis
+
+# MG5@NLO scripz inside bash script
+cat << EOF > basic_package_mg
+# install some packages
+install update
+#install pythia-pgs
+#install MadAnalysis
+#install ExRootAnalysis
+exit
+EOF
+
+# start mg interface (follow instructions)
+./mg5_aMC basic_package_mg
+
+# status
+echo "Info: Done :)"
+
+# go back to CURRENT_DIR
+cd $CURRENT_DIR

@@ -40,6 +40,8 @@ echo "define j = g u c d s u~ c~ d~ s~">>my_gg_hhMG5cmnd
 echo "generate p p > h h [QCD]">>my_gg_hhMG5cmnd
 echo "output $OUT_DIR">>my_gg_hhMG5cmnd
 echo "set automatic_html_opening False">>my_gg_hhMG5cmnd
+echo "set collier $HEP_LIB">>my_gg_hhMG5cmnd
+echo "set ninja $HEP_LIB">>my_gg_hhMG5cmnd
 echo "launch $OUT_DIR">>my_gg_hhMG5cmnd
 echo "set ebeam1 50000">>my_gg_hhMG5cmnd
 echo "set ebeam2 50000">>my_gg_hhMG5cmnd
@@ -47,9 +49,6 @@ echo "set nevents 100">>my_gg_hhMG5cmnd
 echo "set iseed $R">>my_gg_hhMG5cmnd
 echo "set pdlabel nn23lo1">>my_gg_hhMG5cmnd
 echo "set lhaid 230000">>my_gg_hhMG5cmnd
-echo "set collier $HEP_LIB">>my_gg_hhMG5cmnd
-echo "set ninja $HEP_LIB">>my_gg_hhMG5cmnd
-echo "set mg5_path $MG5_DIR">>my_gg_hhMG5cmnd
 echo "launch $OUT_DIR -i ">>my_gg_hhMG5cmnd
 echo "print_results --path=$OUT_DIR/cross_section_top.txt --format=short">>my_gg_hhMG5cmnd
 
