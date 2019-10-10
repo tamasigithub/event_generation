@@ -35,7 +35,7 @@ cd $MG5_DIR/bin
 ## write the MG5 commands into a file my_gg_hhMG5cmnd
 ####echo "import loop_sm_hh">>my_gg_hhMG5cmnd #this model has a parameter kl that can be modified for trilinear higgs coupling.
 echo "# import a model that allows loop diagrams">my_gg_hhMG5cmnd
-echo "import /cvmfs/atlas.cern.ch/repo/sw/Generators/madgraph/models/latest/HeavyHiggsTHDM">>my_gg_hhMG5cmnd
+echo "import HeavyHiggsTHDM">>my_gg_hhMG5cmnd
 echo "define p = g u c d s u~ c~ d~ s~">>my_gg_hhMG5cmnd
 echo "define j = g u c d s u~ c~ d~ s~">>my_gg_hhMG5cmnd
 echo "generate p p > h h">>my_gg_hhMG5cmnd
@@ -46,11 +46,14 @@ echo "set ninja $HEP_LIB">>my_gg_hhMG5cmnd
 echo "launch $OUT_DIR">>my_gg_hhMG5cmnd
 echo "set ebeam1 50000">>my_gg_hhMG5cmnd
 echo "set ebeam2 50000">>my_gg_hhMG5cmnd
-echo "set nevents 1000">>my_gg_hhMG5cmnd
+echo "set nevents 10000">>my_gg_hhMG5cmnd
 echo "set dynamical_scale_choice 3">>my_gg_hhMG5cmnd
+echo "#set scale 125">>my_gg_hhMG5cmnd # default is set to Z mass -> This value is set by reffering to https://cds.cern.ch/record/2665057/files/ATL-PHYS-PUB-2019-007.pdf
+echo "#set dsqrt_q2fact1 125">>my_gg_hhMG5cmnd
+echo "#set dsqrt_q2fact2 125">>my_gg_hhMG5cmnd
 echo "set MH 125.0">>my_gg_hhMG5cmnd		# Higgs mass
-echo "set MHH 125.0">>my_gg_hhMG5cmnd		# Heavy higgs mass. This is not necessary as the resonant contribution is anyway removed by setting its coupling coeff. to zero below
-echo "set ctr -2.0>>my_gg_hhMG5cmnd		# the tri linear higgs coupling
+echo "#set MHH 125.0">>my_gg_hhMG5cmnd		# Heavy higgs mass. This is not necessary as the resonant contribution is anyway removed by setting its coupling coeff. to zero below
+echo "set ctr 1.0">>my_gg_hhMG5cmnd		# the tri linear higgs coupling
 echo "set ctrH 0.00000001">>my_gg_hhMG5cmnd	# the H coupling to 2 SM-higgs - set to zero in order to get rid of the resonant contribution
 echo "set cyH 0.00000001">>my_gg_hhMG5cmnd	# the H coupling to the top - set to zero in order to get rid of the resonant contribution
 echo "set iseed $R">>my_gg_hhMG5cmnd
