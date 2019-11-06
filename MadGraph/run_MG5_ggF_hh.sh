@@ -50,7 +50,7 @@ echo "set nevents 1000">>my_gg_hhMG5cmnd
 echo "set dynamical_scale_choice 3">>my_gg_hhMG5cmnd
 echo "set MH 125.0">>my_gg_hhMG5cmnd		# Higgs mass
 echo "set MHH 125.0">>my_gg_hhMG5cmnd		# Heavy higgs mass. This is not necessary as the resonant contribution is anyway removed by setting its coupling coeff. to zero below
-echo "set ctr -2.0>>my_gg_hhMG5cmnd		# the tri linear higgs coupling
+echo "set ctr 10.0">>my_gg_hhMG5cmnd		# the tri linear higgs coupling
 echo "set ctrH 0.00000001">>my_gg_hhMG5cmnd	# the H coupling to 2 SM-higgs - set to zero in order to get rid of the resonant contribution
 echo "set cyH 0.00000001">>my_gg_hhMG5cmnd	# the H coupling to the top - set to zero in order to get rid of the resonant contribution
 echo "set iseed $R">>my_gg_hhMG5cmnd

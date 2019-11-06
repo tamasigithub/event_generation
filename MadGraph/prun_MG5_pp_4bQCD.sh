@@ -14,7 +14,7 @@ lsetup "lcgenv -p LCG_96 x86_64-slc6-gcc8-opt lhapdf 6.2.3"
 export LHAPDF_DATA_PATH=/cvmfs/atlas.cern.ch/repo/sw/Generators/lhapdfsets/current:$LHAPDF_DATA_PATH
 lsetup panda
 
-rm tarball.tar.gz
-tar cvfz tarball_SMVBF_hh.tar.gz MG5_aMC_v2_6_6 run_MG5_SMVBF_hh.sh
+rm tarball_pp_4bQCD.tar.gz
+tar cvfz tarball_pp_4bQCD.tar.gz MG5_aMC_v2_6_6 run_MG5_pp_4bQCD.sh
 
-prun --exec "run_MG5_SMVBF_hh.sh" --outDS user.${CERN_USER}.pp_VBFSM_hh.v1 --outputs unweighted_events.lhe --inTarBall tarball_SMVBF_hh.tar.gz --nJobs 1
+prun --exec "run_MG5_pp_4bQCD.sh" --outDS user.${CERN_USER}.pp_4bQCD.v2 --outputs unweighted_events.lhe --inTarBall tarball_pp_4bQCD.tar.gz --nJobs 1000
