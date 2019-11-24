@@ -16,13 +16,15 @@
 
 #include "TFile.h"
 #include "TTree.h"
-
+#include "TInterpreter.h"
 #include <sstream>
 #include <cmath>
 
 using namespace Pythia8;
 
 int main(int argc, char **argv) {
+
+  gInterpreter->GenerateDictionary("vector<vector<int>>","vector");
 
   std::string inputFile = "input.lhe";
   //std::string configurationFile = "shower.cmnd";
@@ -83,6 +85,12 @@ int main(int argc, char **argv) {
   std::vector<float> *vy = 0;
   std::vector<float> *vz = 0;
   std::vector<float> *vt = 0;
+  std::vector<int> *mother1 = 0;
+  std::vector<int> *mother2 = 0;
+  std::vector<int> *daughter1 = 0;
+  std::vector<int> *daughter2 = 0;
+  std::vector<std::vector<int>> *mother = 0;
+  std::vector<std::vector<int>> *daughters = 0;
 
   t->Branch("weight", &weight, "weight/F");
   t->Branch("mergingWeight", &mergingWeight, "mergingWeight/F");
@@ -100,6 +108,12 @@ int main(int argc, char **argv) {
   t->Branch("vy", &vy);
   t->Branch("vz", &vz);
   t->Branch("vt", &vt);
+  t->Branch("mother1", &mother1);
+  t->Branch("daughter1", &daughter1);
+  t->Branch("mother2", &mother2);
+  t->Branch("daughter2", &daughter2);
+  t->Branch("mother", &mother);
+  t->Branch("daughters", &daughters);
 
   // general quantities, for the whole file
   float crossSection = 0;
@@ -139,6 +153,12 @@ int main(int argc, char **argv) {
     vy->clear();
     vz->clear();
     vt->clear();
+    mother1->clear();
+    daughter1->clear();
+    mother2->clear();
+    daughter2->clear();
+    mother->clear();
+    daughters->clear();
 
     // get weights
     mergingWeight = pythia.info.mergingWeight();
@@ -148,9 +168,9 @@ int main(int argc, char **argv) {
     for (int i = 0; i < pythia.event.size(); ++i) {
       // save final particles, the Heavy Higgs (pdg ID 35) and the SM Higgs
       bool toSave = (pythia.event[i].isFinal() || abs(pythia.event[i].statusHepMC()) == 4);
-      toSave |= (abs(pythia.event[i].status()) == 12);
       toSave |= (abs(pythia.event[i].status()) == 21);
       toSave |= (abs(pythia.event[i].status()) == 22);
+      toSave |= (abs(pythia.event[i].status()) == 62);
       toSave |= (abs(pythia.event[i].status()) == 23);
       //std::cout << "Particle " << i << ", id " << pythia.event[i].id() << ", status = " << pythia.event[i].status() << ", final? " << pythia.event[i].isFinal() << std::endl;
       //std::cout << "Save it: " << toSave << std::endl;
@@ -169,6 +189,12 @@ int main(int argc, char **argv) {
         float tvy = pythia.event[i].yProd();
         float tvz = pythia.event[i].zProd();
         float tvt = pythia.event[i].tProd();
+	int mth1  = pythia.event[i].mother1();
+	int mth2  = pythia.event[i].mother2();
+	int dth1  = pythia.event[i].daughter1();
+	int dth2  = pythia.event[i].daughter2();
+        std::vector<int> mother_list = pythia.event[i].motherList();
+        std::vector<int> daughter_list = pythia.event[i].daughterList();
         px->push_back(tpx);
         py->push_back(tpy);
         pz->push_back(tpz);
@@ -183,7 +209,14 @@ int main(int argc, char **argv) {
         vy->push_back(tvy);
         vz->push_back(tvz);
         vt->push_back(tvt);
-      }
+	mother->push_back(mother_list);
+	daughters->push_back(daughter_list);
+	mother1->push_back(mth1);
+	mother2->push_back(mth2);
+	daughter1->push_back(dth1);
+	daughter2->push_back(dth2);
+
+      //}
     }
 
     sumWeights += weight;
