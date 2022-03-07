@@ -169,8 +169,8 @@ int main(int argc, char **argv) {
       // save final particles, the Heavy Higgs (pdg ID 35) and the SM Higgs
       bool toSave = (pythia.event[i].isFinal() || abs(pythia.event[i].statusHepMC()) == 4);
       toSave |= (abs(pythia.event[i].status()) == 21);
-      toSave |= (abs(pythia.event[i].status()) == 22);
-      toSave |= (abs(pythia.event[i].status()) == 62);
+      toSave |= (abs(pythia.event[i].status()) == 22 && pythia.event[i].id() == 25);
+      toSave |= (abs(pythia.event[i].status()) == 62 && pythia.event[i].id() == 25);
       toSave |= (abs(pythia.event[i].status()) == 23);
       //std::cout << "Particle " << i << ", id " << pythia.event[i].id() << ", status = " << pythia.event[i].status() << ", final? " << pythia.event[i].isFinal() << std::endl;
       //std::cout << "Save it: " << toSave << std::endl;
@@ -216,7 +216,7 @@ int main(int argc, char **argv) {
 	daughter1->push_back(dth1);
 	daughter2->push_back(dth2);
 
-      //}
+      }
     }
 
     sumWeights += weight;

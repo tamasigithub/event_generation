@@ -35,6 +35,7 @@ ls -lh
 
 # Not really necessary, but just in case
 cp shower.cmnd $PYTHIA8DIR/examples
+cp shower_1.cc $PYTHIA8DIR/examples
 
 # recompile
 # should not be necessary, but there seem to be slightly different GCC versions available in the Grid
@@ -45,7 +46,7 @@ make clean
 make
 cd examples
 make clean
-make shower 
+make shower_1 
 cd ../../
 
 export LHAPDF_DATA_PATH=/cvmfs/atlas.cern.ch/repo/sw/Generators/lhapdfsets/current:$LHAPDF_DATA_PATH
@@ -63,7 +64,7 @@ then
 fi
 
 echo "Running Pythia8 now"
-$PYTHIA8DIR/examples/shower input.lhe output.root $R
+$PYTHIA8DIR/examples/shower_1 input.lhe output.root $R
 
 echo "Listing final directory"
 ls -lh

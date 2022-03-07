@@ -17,6 +17,25 @@ lsetup panda
 rm tarball_pythia.tar.gz
 tar cvfz tarball_pythia.tar.gz pythia8243 shower.cmnd run_it_pythia.sh
 
-# for some reason this command sometimes doesn't work when executed using a bash script. 
-# If that's the case just paste the line below in your terminal (of course replace $CERN_USER by your user name)
-prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_hh.v2_unweighted_events.lhe/ --outDS user.${CERN_USER}.pp_ggF_hh_4b_pythia82_shower.v2 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#### for some reason this command sometimes doesn't work when executed using a bash script. 
+#### If that's the case just paste the line below in your terminal (of course replace $CERN_USER by your user name)
+####prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_VBFC325_hh_NoGenCuts.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp_VBFC325_hh_4b_NoGenCuts_pythia82_shower.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr1.0hh.v2_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr1.0hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr2.0hh.v2_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr2.0hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr2.5hh.v2_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr2.5hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr3.0hh.v3_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr3.0hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr0.0hh.v3_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr0.0hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr-1.0hh.v3_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr-1.0hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr-2.0hh.v3_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr-2.0hh_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_ggF_Ctr1.5hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp_ggF_Ctr1.5hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+###prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp_4bQCD.v2_unweighted_events.lhe --outDS user.${CERN_USER}.pp_4bQCD_pythia82_GenCuts.v5 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr1.0hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr1.0hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr2.0hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr2.0hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr2.5hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr2.5hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr3.0hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr3.0hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr0.0hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr0.0hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr-1.0hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr-1.0hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_ggF_Ctr-2.0hh.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_ggF_Ctr-2.0hh_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
+#prun --exec "run_it_pythia.sh %IN" --inDS user.${CERN_USER}.pp14TeV_4bQCD.v1_unweighted_events.lhe --outDS user.${CERN_USER}.pp14TeV_4bQCD_pythia82_GenCuts.v1 --outputs output.root --inTarBall tarball_pythia.tar.gz --nFilesPerJob 1
